@@ -13,16 +13,19 @@ export default Ember.Component.extend({
       var autocomplete;
 
       var placeChanged = () => {
-        var locationObject = autocomplete.getPlace();
+        var self = this;
+        Ember.run(function () {
+            var locationObject = autocomplete.getPlace();
 
-        var latitude = locationObject.geometry.location.lat();
-        var longitude = locationObject.geometry.location.lng();
+            var latitude = locationObject.geometry.location.lat();
+            var longitude = locationObject.geometry.location.lng();
 
-        this.set('countryName', locationObject.name);
-        this.set('latitude', latitude);
-        this.set('longitude', longitude);
+            self.set('countryName', locationObject.name);
+            self.set('latitude', latitude);
+            self.set('longitude', longitude);
 
-        this.sendAction('getModel', latitude , longitude);
+            self.sendAction('getModel', latitude, longitude);
+        });
       };
 
       window.initAutocomplete = () => {

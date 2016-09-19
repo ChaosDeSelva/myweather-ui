@@ -3,23 +3,12 @@ import { test } from 'ember-qunit';
 import moduleForAcceptance from 'black-hole-sun/tests/helpers/module-for-acceptance';
 
 import GooglePlaceAutocompleteResponseMock from './../helpers/mock/place';
-import startApp from '../helpers/start-app';
-
-var application;
 
 const ENTER = {keyCode: 13};
 const DOWN_ARROW = {keyCode: 40};
 
-moduleForAcceptance('Acceptance: EndToEnd', {
-  beforeEach: function () {
-    application = startApp();
-  },
-  afterEach: function () {
-    Ember.run(application, 'destroy');
-  }
-});
-
-test('Google Place Autocomplete', function(assert) {
+moduleForAcceptance('Acceptance: EndToEnd');
+test('Google Place Autocomplete', function (assert) {
   visit('/');
   andThen(() => {
     window.google.maps.places = {
@@ -34,21 +23,29 @@ test('Google Place Autocomplete', function(assert) {
         };
       }
     };
-
     andThen(() => {
       var displayValue = 'Portland';
-      click('#autocomplete');
+
       fillIn('#autocomplete', 'Portland');
 
       for (let i = 0; i < displayValue.length; ++i) {
-        triggerEvent('#autocomplete', 'keyup', {keyCode: displayValue.charCodeAt(i)});
+        triggerEvent('#autocomplete', 'keydown', {keyCode: displayValue.charCodeAt(i)});
       }
+      Ember.run.later(function () {
+        triggerEvent('#autocomplete', 'keydown', DOWN_ARROW);
+        triggerEvent('#autocomplete', 'keydown', ENTER);
 
-      triggerEvent('#autocomplete', 'keydown', {keyCode: DOWN_ARROW});
-      triggerEvent('#autocomplete', 'keydown', {keyCode: ENTER});
-      andThen(() => {
-        assert.equal(find('#autocomplete').val(), 'Portland'); //todo should be full address
-      });
+        andThen(() => {
+          assert.equal(find('#autocomplete').val(), 'Portland, OR, United States');
+
+          Ember.run.later(function () {
+            assert.equal(find('#countryName').html(), 'Portland');
+          }, 1000);
+        });
+      }, 1000);
+
+
     });
   });
 });
+
