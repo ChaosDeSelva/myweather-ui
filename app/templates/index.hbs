@@ -1,0 +1,20 @@
+
+<div align="center" class="padTop50">
+    <img src="assets/images/logo.png" width="500px" alt="Weather Logo"/>
+</div>
+
+{{place-finder getModel="getModel" countryName=countryName longitude=longitude latitude=latitude}}
+
+<div id="weatherPanel" class="hide">
+  <div class="right-block">
+    {{place-info model=model countryName=countryName}}
+  </div>
+  <div class="left-block">
+    {{place-map longitude=longitude latitude=latitude}}
+  </div>
+  <div class="clear"></div>
+  <br/>
+
+  {{place-chart model=model}}
+  <div class="hide" id="weatherChartError">Sorry, But no minutely precipitation data was found.</div>
+</div>

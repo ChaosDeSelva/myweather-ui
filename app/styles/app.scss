@@ -1,0 +1,52 @@
+@import "place-finder";
+@import "place-info";
+@import "place-map";
+
+body {
+  font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif
+}
+
+.left-block {
+  float: left;
+  height: 500px;
+  width: 50%;
+  min-width: 350px;
+  position: relative;
+}
+
+.right-block {
+  float: left;
+  width: 50%;
+  min-width: 350px;
+  position: relative;
+}
+
+.left {
+  float: left;
+}
+
+.clear{
+  clear: both;
+}
+
+.outside{
+  float: right;
+  position: relative;
+  left: -50%;
+}
+
+.hide{
+  display: none;
+}
+
+.padTop50{
+  padding-top: 50px;
+}
+
+@media screen and (max-width: 940px)   {
+  .left-block, .right-block{
+    width:100%;
+    float:none;
+  }
+
+}
