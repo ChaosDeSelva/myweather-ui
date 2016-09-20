@@ -20,6 +20,11 @@ You will need the following things properly installed on your computer.
 * `npm install`
 * `bower install`
 
+You will need to add keys to the environment file for the following:
+* map (apiId and apiSecret) Obtain these at http://www.aerisweather.com/
+* googleMap (url) Obtain this at https://developers.google.com/maps/
+* services (mapWrapperUrl) this would be your node instance running locally that handles the forecast io data wrapping
+
 ## Running / Development
 
 * `ember serve`

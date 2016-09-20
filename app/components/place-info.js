@@ -22,14 +22,19 @@ export default Ember.Component.extend({
     }
   }),
 
-  windBearing: Ember.computed('model.currently.humidity', function () {
-    if (typeof this.get('model') !== 'undefined' && this.get('model').hasOwnProperty('currently') && this.get('model.currently').hasOwnProperty('windBearing')) {
-      var val = Math.ceil((this.get('model.currently.humidity') / 22.5) + 0.5);
+  windBearing: Ember.computed('model.currently.windBearing', function () {
+    if (typeof this.get('model') !== 'undefined') {
+      var val = Math.ceil((this.get('model.currently.windBearing') / 22.5) + 0.5);
       var arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
+      var tmp = arr[(val % 16)];
 
-      return arr[(val % 16)];
+      if ( typeof tmp !== 'undefined' && arr.indexOf(tmp) !== -1 ) {
+        return arr[(val % 16)];
+      } else {
+        return ' ';
+      }
     } else {
-      return '';
+      return ' ';
     }
   }),
 

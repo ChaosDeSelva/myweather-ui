@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import config from '../config/environment';
 
 export default Ember.Component.extend({
 
@@ -40,7 +41,7 @@ export default Ember.Component.extend({
         autocomplete.addListener('place_changed', placeChanged);
       };
 
-      Ember.$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyDsiC8JkAIUCgWjmXaYDjL06igrUMofB1g&libraries=places&callback=initAutocomplete");
+      Ember.$.getScript(config.googleMap.url);
 
     });
   }

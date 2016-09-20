@@ -2,46 +2,46 @@
     <table cellspacing="5" cellpadding="5">
         <tr>
             <td>
-                <div class="font36">{{roundTemp model.currently.temperature}}&#x2109;</div>
-                <div class="font16">{{model.currently.summary}}</div>
+                <div id="temperature" class="font36">{{roundTemp model.currently.temperature}}&#x2109;</div>
+                <div id="summary" class="font16">{{model.currently.summary}}</div>
             </td>
             <td>
                 <canvas id="theWeatherIcon" width="128" height="128"></canvas>
             </td>
             <td>
                 <div class="font36" id="countryName">{{countryName}}</div>
-                <div class="font16">{{locationTime}}</div>
+                <div id="locationTime" class="font16">{{locationTime}}</div>
             </td>
         </tr>
     </table>
     <table cellpadding="5" cellspacing="5" class="font24">
         <tr>
             <td>Feels Like:</td>
-            <td>{{roundTemp model.currently.apparentTemperature}}&#x2109;</td>
+            <td id="feelsLikeTemperature">{{roundTemp model.currently.apparentTemperature}}&#x2109;</td>
         </tr>
         <tr>
             <td>Chance of Rain:</td>
-            <td>{{chanceRain}}%</td>
+            <td id="chanceRain">{{chanceRain}}%</td>
         </tr>
         <tr>
             <td>Humidity:</td>
-            <td id="humidity">{{humidity}}%</td>
+            <td id="humidity">{{roundTemp humidity}}%</td>
         </tr>
         <tr>
             <td>Wind:</td>
-            <td>{{windBearing}} {{model.currently.windSpeed}} mph.</td>
+            <td id="windSpeed">{{windBearing}} {{model.currently.windSpeed}} mph.</td>
         </tr>
         <tr>
             <td>Precipitation:</td>
-            <td>{{model.currently.precipIntensity}} in./hr.</td>
+            <td id="precipProbability">{{model.currently.precipIntensity}} in./hr.</td>
         </tr>
         <tr>
             <td>Pressure:</td>
-            <td>{{model.currently.pressure}} mb.</td>
+            <td id="pressure">{{model.currently.pressure}} mb.</td>
         </tr>
         <tr>
             <td>Visibility:</td>
-            <td>{{model.currently.visibility}} mi.</td>
+            <td id="visibility">{{model.currently.visibility}} mi.</td>
         </tr>
     </table>
 </div>

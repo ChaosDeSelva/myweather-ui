@@ -43,8 +43,18 @@ module.exports = function(environment) {
   }
 
   ENV['map'] = {
-    apiId: 'hidden',
-    apiSecret: 'hidden'
+    apiId: 'none',
+    apiSecret: 'none'
+  };
+
+  var googleMapKey = 'nonoe';
+
+  ENV['googleMap'] = {
+    url: 'https://maps.googleapis.com/maps/api/js?key='+googleMapKey+'&libraries=places&callback=initAutocomplete',
+  };
+
+  ENV['services'] = {
+    mapWrapperUrl: 'http://localhost:8080/weather',
   };
 
   return ENV;

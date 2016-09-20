@@ -8,5 +8,8 @@ moduleFor('adapter:application', 'Unit | Adapter | application', {
 // Replace this with your real tests.
 test('it exists', function(assert) {
   let adapter = this.subject();
-  assert.ok(adapter);
+
+  assert.equal(adapter.get('host').length > 0, true);
+  assert.equal(typeof adapter.get('host') !== 'undefined', true);
+
 });
