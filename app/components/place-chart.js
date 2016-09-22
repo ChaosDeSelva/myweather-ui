@@ -10,7 +10,14 @@ export default Ember.Component.extend({
       var data = [];
 
       for ( var i = 0; i < model.length; i++ ){
-        labels.push(new Date(model[i].time*1000).getMinutes());
+        var apiTime = new Date(model[i].time*1000);
+        var h = apiTime.getHours();
+        var hours = h > 12 ? h - 12 : h;
+        if ( hours <= 0 ){ hours = 12; }
+        var amPm = h >= 12 ? "PM" : "AM";
+        var formattedTime = hours + ':' + ('0'+apiTime.getMinutes()).substr(-2) + ':' + ('0'+apiTime.getSeconds()).substr(-2) + ' ' + amPm;
+
+        labels.push(formattedTime);
         data.push(Math.round(model[i].precipProbability * 100));
       }
 
@@ -22,7 +29,7 @@ export default Ember.Component.extend({
           labels: labels,
           datasets: [
             {
-              label: "Chance of Rain",
+              label: "Chance of rain each minute for the next hour",
               fill: false,
               lineTension: 0.1,
               backgroundColor: "rgba(75,192,192,0.4)",
@@ -47,7 +54,26 @@ export default Ember.Component.extend({
 
         },
         options: {
-          responsive: true
+          responsive: true,
+          scales: {
+            yAxes: [{
+              ticks: {
+                max: 100,
+                min: 0,
+                stepSize: 5,
+                callback: function(value) {
+                  return value + '%';
+                }
+              }
+            }]
+          },
+          tooltips: {
+            callbacks: {
+              label: function(tooltipItem) {
+                return tooltipItem.yLabel + "%";
+              }
+            }
+          }
         }
       });
       window.$('#weatherChart').show();

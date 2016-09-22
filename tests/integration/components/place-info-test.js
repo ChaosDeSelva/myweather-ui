@@ -45,7 +45,7 @@ test('Check Wind Speed Format', function(assert) {
   assert.equal(this.$('#windSpeed').html().trim(), '4 mph.');
 });
 
-test('Check Wind Speed Format', function(assert) {
+test('Check Wind Bearing Format', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 

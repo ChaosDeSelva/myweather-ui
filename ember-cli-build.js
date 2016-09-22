@@ -5,6 +5,9 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     // Add options here
+    fingerprint: {
+      prepend: 'https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/'
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated
