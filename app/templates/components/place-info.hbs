@@ -15,33 +15,47 @@
         </tr>
     </table>
     <table cellpadding="5" cellspacing="5" class="font24">
+        {{#if (amiDefined model.currently.apparentTemperature)}}
         <tr>
             <td>Feels Like:</td>
             <td id="feelsLikeTemperature">{{roundTemp model.currently.apparentTemperature}}&#x2109;</td>
         </tr>
-        <tr>
-            <td>Chance of Rain:</td>
-            <td id="chanceRain">{{chanceRain}}%</td>
-        </tr>
-        <tr>
-            <td>Humidity:</td>
-            <td id="humidity">{{roundTemp humidity}}%</td>
-        </tr>
-        <tr>
-            <td>Wind:</td>
-            <td id="windSpeed">{{windBearing}} {{model.currently.windSpeed}} mph.</td>
-        </tr>
-        <tr>
-            <td>Precipitation:</td>
-            <td id="precipProbability">{{model.currently.precipIntensity}} in./hr.</td>
-        </tr>
-        <tr>
-            <td>Pressure:</td>
-            <td id="pressure">{{model.currently.pressure}} mb.</td>
-        </tr>
-        <tr>
-            <td>Visibility:</td>
-            <td id="visibility">{{model.currently.visibility}} mi.</td>
-        </tr>
+        {{/if}}
+        {{#if (amiDefined model.currently.precipProbability)}}
+            <tr>
+                <td>Chance of Rain:</td>
+                <td id="chanceRain">{{chanceRain}}%</td>
+            </tr>
+        {{/if}}
+        {{#if (amiDefined model.currently.humidity)}}
+            <tr>
+                <td>Humidity:</td>
+                <td id="humidity">{{roundTemp humidity}}%</td>
+            </tr>
+        {{/if}}
+        {{#if (amiDefined model.currently.windSpeed)}}
+            <tr>
+                <td>Wind:</td>
+                <td id="windSpeed">{{windBearing}} {{model.currently.windSpeed}} mph.</td>
+            </tr>
+        {{/if}}
+        {{#if (amiDefined model.currently.precipIntensity)}}
+            <tr>
+                <td>Precipitation:</td>
+                <td id="precipProbability">{{model.currently.precipIntensity}} in./hr.</td>
+            </tr>
+        {{/if}}
+        {{#if (amiDefined model.currently.pressure)}}
+            <tr>
+                <td>Pressure:</td>
+                <td id="pressure">{{model.currently.pressure}} mb.</td>
+            </tr>
+        {{/if}}
+        {{#if (amiDefined model.currently.visibility)}}
+            <tr>
+                <td>Visibility:</td>
+                <td id="visibility">{{model.currently.visibility}} mi.</td>
+            </tr>
+        {{/if}}
     </table>
 </div>

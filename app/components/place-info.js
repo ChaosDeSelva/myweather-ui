@@ -6,7 +6,15 @@ export default Ember.Component.extend({
 
   locationTime: Ember.computed('model.currently.time', function () {
     if (typeof this.get('model') !== 'undefined') {
-      return new Date(this.get('model.currently.time') * 1000);
+
+      if ( typeof this.get('model.offset') !== 'undefined' ) {
+        var d = new Date(this.get('model.currently.time') * 1000);
+        var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+
+        return new Date(utc + (3600000 * this.get('model.offset')));
+      } else {
+        return new Date(this.get('model.currently.time') * 1000);
+      }
     }
   }),
 

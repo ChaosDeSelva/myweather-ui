@@ -11,5 +11,5 @@ test('Chart Has Confirmed Text Message', function(assert) {
 
   this.render(hbs`{{place-chart}}`);
 
-  assert.equal(this.$('#weatherChartError').text().trim(), 'Sorry, But no minutely precipitation data was found.');
+  assert.equal(this.$('#weatherChartErrorMsg').text().trim(), 'Sorry, But no minutely precipitation data was found for this location.');
 });

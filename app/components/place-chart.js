@@ -11,6 +11,11 @@ export default Ember.Component.extend({
 
       for ( var i = 0; i < model.length; i++ ){
         var apiTime = new Date(model[i].time*1000);
+
+        if ( typeof this.get('model.offset') !== 'undefined' ) {
+          var utc = apiTime.getTime() + (apiTime.getTimezoneOffset() * 60000);
+          apiTime = new Date(utc + (3600000 * this.get('model.offset')));
+        }
         var h = apiTime.getHours();
         var hours = h > 12 ? h - 12 : h;
         if ( hours <= 0 ){ hours = 12; }

@@ -17,8 +17,15 @@ export default Ember.Route.extend({
             lng: lng
           }
         }).then(function(data) {
-          resolve(self.controllerFor('index').set('model', data));
-          window.$('#weatherPanel').show();
+            resolve(self.controllerFor('index').set('model', data));
+            window.$('#weatherPanel').show();
+        }, function(data){
+          var msg = "Something has went wrong.  Maybe try again or contact ChaosDeSelva@gmail.com";
+          if ( data.hasOwnProperty('isAdapterError') && data.isAdapterError ){
+            window.sweetAlert("Server Location Validation", msg, "error");
+          } else {
+            window.sweetAlert("An Error has Occurred!", msg, "error");
+          }
         });
       });
     }

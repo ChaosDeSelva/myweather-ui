@@ -1,3 +1,6 @@
+$warning-color: #F27474;
+
+
 @import "place-finder";
 @import "place-info";
 @import "place-map";
@@ -41,6 +44,18 @@ body {
 
 .padTop50{
   padding-top: 50px;
+}
+
+.padLeft10{
+  padding-left: 10px;
+}
+
+.valign{
+  vertical-align: middle;
+}
+
+.warning-color{
+  color: $warning-color;
 }
 
 @media screen and (max-width: 940px)   {
